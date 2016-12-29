@@ -1,5 +1,7 @@
 Termux:Boot
 ===========
+[![Join the chat at https://gitter.im/termux/termux](https://badges.gitter.im/termux/termux.svg)](https://gitter.im/termux/termux)
+
 A [Termux](https://termux.com) add-on app to run programs at boot.
 
 - [Termux:Boot on Google Play](https://play.google.com/store/apps/details?id=com.termux.boot)
