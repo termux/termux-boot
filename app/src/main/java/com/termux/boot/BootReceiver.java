@@ -53,9 +53,9 @@ public class BootReceiver extends WakefulBroadcastReceiver {
         }
 
         if (logMessage.length() > 0) {
-            Log.i("termux-boot", "Executed files at boot: " + logMessage);
+            Log.i("termux", "Executed files at boot: " + logMessage);
         } else {
-            Log.i("termux-boot", "No files to execute at boot");
+            Log.i("termux", "No files to execute at boot");
         }
     }
 
