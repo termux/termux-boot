@@ -15,7 +15,7 @@ Released under [the GPLv3 license](https://www.gnu.org/licenses/gpl.html).
 How to use
 ==========
 1. Install the Termux:Boot app.
-2. Run the Termux:Boot app once by clicking on its launcher icon. This makes the app permitted to be run at device boot.
+2. Run the Termux:Boot app once by clicking on its launcher icon. This allows the app to be run at boot.
 3. Create the `~/.termux/boot/` directory.
 4. Put scripts you want to execute inside the `~/.termux/boot/` directory. If there are multiple files, they will be executed in a sorted order.
 5. Note that you may want to run `termux-wake-lock` as first thing if you want to ensure that the device is prevented from sleeping.
