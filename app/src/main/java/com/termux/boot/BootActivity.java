@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.webkit.WebView;
-import android.widget.TextView;
 
 public class BootActivity extends Activity {
 
