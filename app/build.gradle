@@ -6,7 +6,6 @@ android {
 
     dependencies {
         compile 'com.android.support:support-annotations:27.0.0'
-        compile "com.android.support:support-core-utils:27.0.0"
     }
 
     defaultConfig {

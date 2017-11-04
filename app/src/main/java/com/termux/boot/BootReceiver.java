@@ -1,22 +1,20 @@
 package com.termux.boot;
 
 import android.annotation.SuppressLint;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.support.v4.content.WakefulBroadcastReceiver;
+import android.os.PersistableBundle;
 import android.util.Log;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class BootReceiver extends WakefulBroadcastReceiver {
-
-    // Constants from TermuxService.
-    private static final String TERMUX_SERVICE = "com.termux.app.TermuxService";
-    private static final String ACTION_EXECUTE = "com.termux.service_execute";
-    private static final String EXTRA_EXECUTE_IN_BACKGROUND = "com.termux.execute.background";
+public class BootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -43,13 +41,18 @@ public class BootReceiver extends WakefulBroadcastReceiver {
             logMessage.append(file.getName());
 
             ensureFileReadableAndExecutable(file);
-            Uri scriptUri = new Uri.Builder().scheme("com.termux.file").path(file.getAbsolutePath()).build();
 
-            Intent executeIntent = new Intent(ACTION_EXECUTE, scriptUri);
-            executeIntent.setClassName("com.termux", TERMUX_SERVICE);
-            executeIntent.putExtra(EXTRA_EXECUTE_IN_BACKGROUND, true);
+            PersistableBundle extras = new PersistableBundle();
+            extras.putString(BootJobService.SCRIPT_FILE_PATH, file.getAbsolutePath());
 
-            startWakefulService(context, executeIntent);
+            ComponentName serviceComponent = new ComponentName(context, BootJobService.class);
+            JobInfo job = new JobInfo.Builder(0, serviceComponent)
+                    .setExtras(extras)
+                    .setOverrideDeadline(3 * 1000)
+                    .build();
+            JobScheduler jobScheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+            assert jobScheduler != null;
+            jobScheduler.schedule(job);
         }
 
         if (logMessage.length() > 0) {
