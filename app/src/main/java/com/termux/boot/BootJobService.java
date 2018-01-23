@@ -10,6 +10,9 @@ import android.os.PersistableBundle;
 
 public class BootJobService extends JobService {
 
+    public static final int TERMUX_BOOT_JOB_ID_BASE = 1000;
+    static int jobId = TERMUX_BOOT_JOB_ID_BASE;
+
     public static final String SCRIPT_FILE_PATH = "com.termux.boot.script_path";
 
     // Constants from TermuxService.
@@ -35,12 +38,16 @@ public class BootJobService extends JobService {
             context.startService(executeIntent);
         }
 
-        return true;
+        return false;
     }
 
     @Override
     public boolean onStopJob(JobParameters params) {
         return true;
+    }
+
+    public static int getNextId() {
+        return jobId++;
     }
 
 }
