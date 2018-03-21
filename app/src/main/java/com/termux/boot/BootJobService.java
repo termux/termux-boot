@@ -7,10 +7,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.PersistableBundle;
+import android.util.Log;
 
 public class BootJobService extends JobService {
 
     public static final String SCRIPT_FILE_PATH = "com.termux.boot.script_path";
+
+    private static final String TAG = "termux:boot JobService";
 
     // Constants from TermuxService.
     private static final String TERMUX_SERVICE = "com.termux.app.TermuxService";
@@ -19,6 +22,8 @@ public class BootJobService extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters params) {
+        Log.i(TAG, "Executing job " + params.getJobId() + ".");
+
         PersistableBundle extras = params.getExtras();
         String filePath = extras.getString(SCRIPT_FILE_PATH);
 
@@ -35,11 +40,12 @@ public class BootJobService extends JobService {
             context.startService(executeIntent);
         }
 
-        return true;
+        return false; // offloaded to Termux; job is done
     }
 
     @Override
     public boolean onStopJob(JobParameters params) {
-        return true;
+        Log.i(TAG, "Execution of job " + params.getJobId() + " has been cancelled.");
+        return false; // do not reschedule
     }
 }
