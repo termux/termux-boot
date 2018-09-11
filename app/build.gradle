@@ -1,19 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.1"
-
-    dependencies {
-        compile 'com.android.support:support-annotations:27.0.0'
-    }
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "com.termux.boot"
         minSdkVersion 21
-        targetSdkVersion 27
-        versionCode 5
-        versionName "0.5"
+        targetSdkVersion 28
+        versionCode 6
+        versionName "0.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -24,4 +19,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+dependencies {
+    implementation 'com.android.support:support-annotations:27.1.1'
 }
