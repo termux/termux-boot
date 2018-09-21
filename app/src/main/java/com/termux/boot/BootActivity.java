@@ -14,5 +14,4 @@ public class BootActivity extends Activity {
         webView.loadUrl("file:///android_asset/overview.html");
         setContentView(webView);
     }
-
 }

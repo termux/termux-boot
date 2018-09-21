@@ -42,5 +42,4 @@ public class BootJobService extends JobService {
     public boolean onStopJob(JobParameters params) {
         return true;
     }
-
 }
