@@ -2,8 +2,9 @@ package com.termux.boot;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.webkit.WebView;
+
+import androidx.annotation.Nullable;
 
 public class BootActivity extends Activity {
 
