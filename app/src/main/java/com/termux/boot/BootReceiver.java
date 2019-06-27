@@ -17,7 +17,7 @@ public class BootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (!Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) return;
+        if (isExecuted(contect)) return;
 
         @SuppressLint("SdCardPath") final String BOOT_SCRIPT_PATH = "/data/data/com.termux/files/home/.termux/boot";
         final File BOOT_SCRIPT_DIR = new File(BOOT_SCRIPT_PATH);
@@ -61,5 +61,19 @@ public class BootReceiver extends BroadcastReceiver {
     private static void ensureFileReadableAndExecutable(File file) {
         if (!file.canRead()) file.setReadable(true);
         if (!file.canExecute()) file.setExecutable(true);
+    }
+
+    private bool isExecuted(Context context) {
+        final String LAST_EXEC_TIME_PREF = "last_exec_time";
+        SharedPreferences sharedPref = context.getPreferences();
+        final long lastExecTime = sharedPref.getLong(LAST_EXEC_TIME_PREF, 0);
+        final long currentTime = java.lang.System.currentTimeMillis();
+
+        if (lastExecTime > currentTime - android.os.SystemClock.elapsedRealtime()) return true;
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putLong(LAST_EXEC_TIME_PREF, currentTime);
+        editor.commit();
+        return false;
     }
 }
