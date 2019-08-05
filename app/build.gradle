@@ -32,3 +32,9 @@ android {
 dependencies {
     implementation "androidx.annotation:annotation:1.0.1"
 }
+
+task versionName {
+  doLast {
+    print android.defaultConfig.versionName
+  }
+}
