@@ -15,6 +15,9 @@ import java.util.Arrays;
 
 public class BootReceiver extends BroadcastReceiver {
 
+    public static final int TERMUX_BOOT_JOB_ID_BASE = 1000;
+    static int jobId = TERMUX_BOOT_JOB_ID_BASE;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         if (!Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) return;
@@ -40,7 +43,7 @@ public class BootReceiver extends BroadcastReceiver {
             extras.putString(BootJobService.SCRIPT_FILE_PATH, file.getAbsolutePath());
 
             ComponentName serviceComponent = new ComponentName(context, BootJobService.class);
-            JobInfo job = new JobInfo.Builder(0, serviceComponent)
+            JobInfo job = new JobInfo.Builder(jobId++, serviceComponent)
                     .setExtras(extras)
                     .setOverrideDeadline(3 * 1000)
                     .build();

@@ -13,7 +13,7 @@ public class BootJobService extends JobService {
 
     public static final String SCRIPT_FILE_PATH = "com.termux.boot.script_path";
 
-    private static final String TAG = "termux:boot JobService";
+    private static final String TAG = "termux";
 
     // Constants from TermuxService.
     private static final String TERMUX_SERVICE = "com.termux.app.TermuxService";
