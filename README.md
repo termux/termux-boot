@@ -24,6 +24,7 @@ How to use
 Example: To start an sshd server and prevent the device from sleeping at boot, create the following file at `~/.termux/boot/start-sshd`:
 
 ```sh
+#!/data/data/com.termux/files/usr/bin/sh
 termux-wake-lock
 sshd
 ```

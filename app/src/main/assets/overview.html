@@ -10,9 +10,10 @@
 </ul>
 
 <h2>Example</h2>
-<p>To start an sshd server and prevent the device from sleeping at boot, create a file at ~/.termux/boot/start-sshd containing the two lines</p>
+<p>To start an sshd server and prevent the device from sleeping at boot, create a file at ~/.termux/boot/start-sshd containing the three lines</p>
 
 <pre>
+    #!/data/data/com.termux/files/usr/bin/sh
     termux-wake-lock
     sshd
 </pre>
