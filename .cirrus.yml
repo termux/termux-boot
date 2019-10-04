@@ -13,9 +13,9 @@ task:
   depends_on:
     - Run tests
 
-#  environment:
-#    KEYSTORE:
-#    KEYSTORE_PASSWORD:
+  environment:
+    KEYSTORE: ENCRYPTED[6510e0b810884250a3756992cf19030ea21c99c24c2014c68cafa699a19b0bd3f9607ae7241220b02c8c3ee90f3622bc]
+    KEYSTORE_PASSWORD: ENCRYPTED[43942d98f49a1675da29b88d74ee60666f81945f2168126023e7896d137b0a21c4540a0d96fab8f0ca03428e5270642d]
 
   build_release_apk_script: |
     ./gradlew assembleRelease
