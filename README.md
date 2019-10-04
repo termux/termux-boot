@@ -1,5 +1,6 @@
-Termux:Boot
-===========
+# Termux:Boot
+
+[![Build status](https://api.cirrus-ci.com/github/termux/termux-boot.svg?branch=master)](https://cirrus-ci.com/termux/termux-boot)
 [![Join the chat at https://gitter.im/termux/termux](https://badges.gitter.im/termux/termux.svg)](https://gitter.im/termux/termux)
 
 A [Termux](https://termux.com) add-on app to run programs at boot.
@@ -7,14 +8,15 @@ A [Termux](https://termux.com) add-on app to run programs at boot.
 - [Termux:Boot on Google Play](https://play.google.com/store/apps/details?id=com.termux.boot)
 - [Termux:Boot on F-Droid](https://f-droid.org/packages/com.termux.boot)
 
-When developing (or packaging), note that this app needs to be signed with the same key as the main Termux app in order to have the permission to execute scripts.
+When developing (or packaging), note that this app needs to be signed with the
+same key as the main Termux app in order to have the permission to execute scripts.
 
-License
-=======
+## License
+
 Released under [the GPLv3 license](https://www.gnu.org/licenses/gpl.html).
 
-How to use
-==========
+## How to use
+
 1. Install the Termux:Boot app.
 2. Start the Termux:Boot app once by clicking on its launcher icon. This allows the app to be run at boot.
 3. Create the `~/.termux/boot/` directory.
