@@ -24,10 +24,6 @@ Signature keys of all offered builds are different. Before you switch the
 installation source, you will have to uninstall the Termux application and
 all currently installed plugins.
 
-## License
-
-Released under [the GPLv3 license](https://www.gnu.org/licenses/gpl.html).
-
 ## How to use
 
 1. Install the Termux:Boot app.
@@ -43,3 +39,7 @@ Example: To start an sshd server and prevent the device from sleeping at boot, c
 termux-wake-lock
 sshd
 ```
+
+## License
+
+Released under [the GPLv3 license](https://www.gnu.org/licenses/gpl.html).
