@@ -1,33 +1,13 @@
 container:
   image: cirrusci/android-sdk:28
-  cpu: 4
+  cpu: 1
   memory: 8G
 
 task:
-  name: Build release apk
+  name: debug-build
 
-  environment:
-    KEYSTORE: ENCRYPTED[6510e0b810884250a3756992cf19030ea21c99c24c2014c68cafa699a19b0bd3f9607ae7241220b02c8c3ee90f3622bc]
-    KEYSTORE_PASSWORD: ENCRYPTED[43942d98f49a1675da29b88d74ee60666f81945f2168126023e7896d137b0a21c4540a0d96fab8f0ca03428e5270642d]
+  script: |
+    ./gradlew assembleDebug
 
-  build_release_apk_script: |
-    ./gradlew assembleRelease
-
-  build_apksigner_script: |
-    cd ../
-    git clone https://github.com/fornwall/apksigner
-    cd apksigner
-    ./gradlew
-    cp ./build/libs/apksigner-all.jar /tmp/apksigner.jar
-
-  sign_release_apk_script: |
-    echo "$KEYSTORE" | base64 -d > keystore.jks
-    java -jar /tmp/apksigner.jar -p "$KEYSTORE_PASSWORD" keystore.jks \
-      ./app/build/outputs/apk/release/app-release-unsigned.apk \
-      ./termux-boot-release-g${CIRRUS_CHANGE_IN_REPO:0:8}.apk
-
-  release_artifacts:
-    path: "./*.apk"
-
-  unsigned_artifacts:
-    path: "./app/build/outputs/apk/release/*.apk"
+  output_artifacts:
+    path: "./app/build/outputs/apk/debug/*.apk"
