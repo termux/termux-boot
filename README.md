@@ -10,11 +10,7 @@ same key as the main Termux app in order to have the permission to execute scrip
 
 ## Installation
 
-Termux:Boot application can be obtained from:
-
-- [Google Play](https://play.google.com/store/apps/details?id=com.termux.boot)
-- [F-Droid](https://f-droid.org/en/packages/com.termux.boot/)
-- [Kali Nethunter Store](https://store.nethunter.com/en/packages/com.termux.boot/)
+Termux:Boot application can be obtained from [F-Droid](https://f-droid.org/en/packages/com.termux.boot/).
 
 Additionally we provide per-commit debug builds for those who want to try
 out the latest features or test their pull request. This build can be obtained
