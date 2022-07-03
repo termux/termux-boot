@@ -3,7 +3,7 @@
 [![Build status](https://github.com/termux/termux-boot/workflows/Build/badge.svg)](https://github.com/termux/termux-boot/actions)
 [![Join the chat at https://gitter.im/termux/termux](https://badges.gitter.im/termux/termux.svg)](https://gitter.im/termux/termux)
 
-A [Termux](https://termux.com) add-on app to run programs at boot.
+A [Termux](https://termux.dev) add-on app to run programs at boot.
 
 When developing (or packaging), note that this app needs to be signed with the
 same key as the main Termux app in order to have the permission to execute scripts.
