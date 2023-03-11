@@ -29,12 +29,26 @@ all currently installed plugins.
 4. Put scripts you want to execute inside the `~/.termux/boot/` directory. If there are multiple files, they will be executed in a sorted order.
 5. Note that you may want to run `termux-wake-lock` as first thing if you want to ensure that the device is prevented from sleeping.
 
-Example: To start an sshd server and prevent the device from sleeping at boot, create the following file at `~/.termux/boot/start-sshd`:
+### Examples
+
+To start an sshd server and prevent the device from sleeping at boot,
+create the following file at `~/.termux/boot/start-sshd`:
 
 ```sh
 #!/data/data/com.termux/files/usr/bin/sh
 termux-wake-lock
 sshd
+```
+
+To start
+[termux-services](https://wiki.termux.com/wiki/Termux-services), which
+in turn starts enabled services, you can put the following in
+`~/.termux/boot/start-services`:
+
+```sh
+#!/data/data/com.termux/files/usr/bin/sh
+termux-wake-lock
+source /data/data/com.termux/files/usr/etc/profile.d/start-services.sh
 ```
 
 ## License
