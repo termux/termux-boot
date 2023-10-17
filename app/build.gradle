@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    namespace "com.termux.boot"
 
     defaultConfig {
         applicationId "com.termux.boot"
         minSdkVersion 21
         targetSdkVersion 28
+        compileSdk 34
         versionCode 7
         versionName "0.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -30,7 +31,6 @@ android {
 
         debug {
             signingConfig signingConfigs.debug
-            zipAlignEnabled true
         }
     }
 
@@ -41,7 +41,7 @@ android {
 }
 
 dependencies {
-    implementation "androidx.annotation:annotation:1.0.1"
+    implementation "androidx.annotation:annotation:1.7.0"
 }
 
 task versionName {
