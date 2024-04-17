@@ -5,13 +5,18 @@ android {
 
     compileSdk project.properties.compileSdkVersion.toInteger()
 
+    def appVersionName = System.getenv("TERMUX_BOOT_APP_BUILD__APP_VERSION_NAME") ?: ""
+    def apkVersionTag = System.getenv("TERMUX_BOOT_APP_BUILD__APK_VERSION_TAG") ?: ""
+
     defaultConfig {
         applicationId "com.termux.boot"
         minSdk project.properties.minSdkVersion.toInteger()
         targetSdk project.properties.targetSdkVersion.toInteger()
         versionCode 7
-        versionName "0.7"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionName "0.7.0"
+
+        if (appVersionName) versionName = appVersionName
+        validateVersionName(versionName)
     }
 
     signingConfigs {
@@ -39,6 +44,16 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            if (variant.buildType.name == "debug") {
+                outputFileName = new File("termux-boot_" + (apkVersionTag ? apkVersionTag : "debug") + ".apk")
+            } else if (variant.buildType.name == "release") {
+                outputFileName = new File("termux-boot_" + (apkVersionTag ? apkVersionTag : "release") + ".apk")
+            }
+        }
+    }
 }
 
 dependencies {
@@ -46,7 +61,14 @@ dependencies {
 }
 
 task versionName {
-  doLast {
-    print android.defaultConfig.versionName
-  }
+    doLast {
+        print android.defaultConfig.versionName
+    }
+}
+
+def validateVersionName(String versionName) {
+    // https://semver.org/spec/v2.0.0.html#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
+    // ^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$
+    if (!java.util.regex.Pattern.matches("^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?\$", versionName))
+        throw new GradleException("The versionName '" + versionName + "' is not a valid version as per semantic version '2.0.0' spec in the format 'major.minor.patch(-prerelease)(+buildmetadata)'. https://semver.org/spec/v2.0.0.html.")
 }
