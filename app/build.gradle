@@ -12,8 +12,8 @@ android {
         applicationId "com.termux.boot"
         minSdk project.properties.minSdkVersion.toInteger()
         targetSdk project.properties.targetSdkVersion.toInteger()
-        versionCode 7
-        versionName "0.7.0"
+        versionCode 8
+        versionName "0.8.0"
 
         if (appVersionName) versionName = appVersionName
         validateVersionName(versionName)
