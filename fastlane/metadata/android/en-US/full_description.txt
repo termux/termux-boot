@@ -1,0 +1,17 @@
+This plugin for <a href="https://termux.com">Termux</a> allows programs to be run at boot.
+
+Instructions:
+
+ * Start the Termux:Boot app once by clicking on its launcher icon.
+ * This allows the app to be run at boot.
+ * Create the <tt>~/.termux/boot/</tt> directory.
+ * Put scripts you want to execute inside the <tt>~/.termux/boot/</tt> directory.
+ * If there are multiple files, they will be executed in a sorted order.
+
+Note that you may want to run termux-wake-lock as first thing want to ensure
+ that the device is prevented from sleeping.
+
+Example: To start a sshd server and prevent the device from sleeping at boot,
+ create a file <tt>~/.termux/boot/start-sshd</tt> containing the line:
+
+  <tt>termux-wake-lock && sshd</tt>
