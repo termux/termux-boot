@@ -1,0 +1,3 @@
+pdate && pkg upgrade -y
+pkg install python -y
+pip install telebot yfinance pandas ta
