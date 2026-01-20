@@ -32,7 +32,7 @@ public class BootReceiver extends BroadcastReceiver {
 
         StringBuilder logMessage = new StringBuilder();
         for (File file : files) {
-            if (!file.isFile()) return;
+            if (!file.isFile()) continue;
 
             if (logMessage.length() > 0) logMessage.append(", ");
             logMessage.append(file.getName());
